@@ -1,0 +1,135 @@
+:root {
+  --ink: #1c1712;
+  --paper: #f3ead6;
+  --card: #fff8ea;
+  --rust: #b24a2a;
+  --line: rgba(28, 23, 18, 0.14);
+  --muted: #6b5d4d;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; min-height: 100%; }
+body {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background: radial-gradient(1200px 600px at 10% -10%, #fff6e4, var(--paper));
+  color: var(--ink);
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+.shell { position: relative; max-width: 980px; margin: 0 auto; padding: 48px 22px 80px; }
+
+.mast {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 28px;
+  animation: rise 700ms ease both;
+}
+.kicker { letter-spacing: 0.16em; text-transform: uppercase; font-size: 11px; color: var(--rust); margin: 0 0 8px; }
+h1 {
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 0.9;
+  margin: 0;
+  font-weight: 600;
+}
+.lede { max-width: 38ch; color: var(--muted); margin: 14px 0 0; }
+nav { display: flex; gap: 8px; }
+button {
+  font: inherit;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 999px;
+}
+button.ghost { background: transparent; color: var(--ink); }
+button.on { background: var(--rust); border-color: var(--rust); color: #fff8ea; }
+button.danger { border-color: var(--rust); color: var(--rust); }
+button:disabled { opacity: 0.55; }
+
+.edition {
+  margin: 28px 0 36px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card) 86%, #e8d4b0);
+  position: relative;
+}
+.stamp {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rust);
+  transform: rotate(8deg);
+}
+.edition h2 { font-family: Fraunces, serif; margin: 0 0 8px; font-size: 28px; }
+.edition p { margin: 0; color: var(--muted); max-width: 60ch; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 18px 18px 16px;
+  box-shadow: 0 10px 30px rgba(28,23,18,0.05);
+  animation: rise 520ms ease both;
+}
+.card.slim { margin-bottom: 12px; }
+.card h3 { font-family: Fraunces, serif; margin: 0 0 8px; }
+.card p { margin: 0 0 12px; white-space: pre-wrap; color: #32281f; }
+time { font-size: 12px; color: var(--muted); }
+.empty { color: var(--muted); }
+
+.desk { display: grid; gap: 22px; }
+form label { display: grid; gap: 6px; margin: 12px 0; font-size: 13px; color: var(--muted); }
+input, textarea {
+  font: inherit;
+  color: var(--ink);
+  background: #fffdf7;
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  width: 100%;
+}
+.check { display: flex; align-items: center; gap: 8px; }
+.check input { width: auto; }
+.row { display: flex; gap: 8px; align-items: center; }
+.between { justify-content: space-between; }
+.msg { color: var(--rust); }
+.sub { font-family: Fraunces, serif; }
+.pill {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.pill.on { border-color: var(--rust); color: var(--rust); }
+
+footer { margin-top: 48px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 700px) {
+  .mast { flex-direction: column; align-items: start; }
+}
